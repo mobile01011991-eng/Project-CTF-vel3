@@ -3,7 +3,7 @@ import styles from './ChatWindow.module.css'
 
 // ── Connection defaults ───────────────────────────────────────────
 const DEFAULT_ENDPOINT = 'ws://127.0.0.1:18789/'
-const DEFAULT_API_KEY = import.meta.env.VITE_OPENCLAW_API_KEY || ''
+const DEFAULT_API_KEY = 'ad83e129ad208660c11c92f945625572754e0e86635e3ecc'
 const AGENT_NAME = 'OpenClaw'
 // ─────────────────────────────────────────────────────────────────
 

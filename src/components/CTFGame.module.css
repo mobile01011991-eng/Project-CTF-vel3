@@ -203,6 +203,59 @@
 .progCurrent { color: #ffff00; }
 .progLocked  { color: #404060; }
 
+/* ── Manual Answer Input ───────────────────────────────── */
+.manualInputContainer {
+  background: #000040;
+  border: 1px solid #404080;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+.manualForm {
+  display: flex;
+  gap: 8px;
+}
+
+.manualInput {
+  flex: 1;
+  background: #000000;
+  color: #00ff00;
+  border: 2px inset #808080;
+  padding: 6px 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+
+.manualInput::placeholder {
+  color: #006000;
+}
+
+.manualInput:focus {
+  outline: none;
+  border-color: #00ffff;
+}
+
+.manualBtn {
+  background: #004000;
+  color: #00ff00;
+  border: 2px outset #008000;
+  padding: 6px 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.manualBtn:hover {
+  background: #008000;
+  color: #ffffff;
+}
+
+.manualBtn:active {
+  border-style: inset;
+}
+
 /* ── Level Up Screen ───────────────────────────────────── */
 .levelupPage {
   align-items: center;

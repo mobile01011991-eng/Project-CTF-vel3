@@ -89,10 +89,24 @@ export default function CTFGame({ onShutdown }) {
   const [completedLevels, setCompletedLevels] = useState([])
   const [view, setView] = useState('story') // 'story' | 'terminal' | 'victory' | 'levelup'
   const [lastPassword, setLastPassword] = useState('')
+  const [manualAnswer, setManualAnswer] = useState('')
 
   const level = LEVELS[currentLevel]
 
   function startTerminal() { setView('terminal') }
+
+  function handleManualSubmit(e) {
+    e.preventDefault()
+    if (!manualAnswer.trim()) return
+
+    if (manualAnswer.trim().toUpperCase() === level.password.toUpperCase()) {
+      handlePasswordFound(level.password)
+      setManualAnswer('')
+    } else {
+      alert('ACCESS DENIED: Incorrect dimension key.')
+      setManualAnswer('')
+    }
+  }
 
   function handlePasswordFound(password) {
     setLastPassword(password)
@@ -152,14 +166,26 @@ export default function CTFGame({ onShutdown }) {
           onPasswordFound={handlePasswordFound}
         />
 
+        <div className={styles.manualInputContainer}>
+          <form onSubmit={handleManualSubmit} className={styles.manualForm}>
+            <input
+              type="text"
+              value={manualAnswer}
+              onChange={(e) => setManualAnswer(e.target.value)}
+              placeholder="Enter Dimension Key (Password)..."
+              className={styles.manualInput}
+            />
+            <button type="submit" className={styles.manualBtn}>SUBMIT KEY</button>
+          </form>
+        </div>
+
         <div className={styles.progressRow}>
           {LEVELS.map((l, i) => (
             <div
               key={l.id}
-              className={`${styles.progDot} ${
-                completedLevels.includes(l.id) ? styles.progDone :
+              className={`${styles.progDot} ${completedLevels.includes(l.id) ? styles.progDone :
                 i === currentLevel ? styles.progCurrent : styles.progLocked
-              }`}
+                }`}
             >
               {completedLevels.includes(l.id) ? '✓' : i === currentLevel ? '◉' : '○'}
             </div>
@@ -211,10 +237,9 @@ function StoryScreen({ level, completedLevels, onStart }) {
         {LEVELS.map((l, i) => (
           <div
             key={l.id}
-            className={`${styles.progDot} ${
-              completedLevels.includes(l.id) ? styles.progDone :
+            className={`${styles.progDot} ${completedLevels.includes(l.id) ? styles.progDone :
               l.id === level.id ? styles.progCurrent : styles.progLocked
-            }`}
+              }`}
           >
             {completedLevels.includes(l.id) ? '✓' : l.id === level.id ? '◉' : '○'}
           </div>

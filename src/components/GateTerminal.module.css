@@ -172,3 +172,115 @@
   from { opacity: 0.3; }
   to   { opacity: 1; }
 }
+
+/* ── MCP Tool Call Panel ─────────────────────────────────── */
+.mcpPanel {
+  margin: 0 8px 4px 8px;
+  border: 1px solid #806000;
+  background: #0a0800;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  overflow: hidden;
+  animation: mcpFadeIn 0.25s ease-out;
+}
+
+@keyframes mcpFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mcpHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  background: #1a1000;
+  border-bottom: 1px solid #806000;
+}
+
+.mcpIcon {
+  font-size: 12px;
+  animation: mcpSpin 1.5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes mcpSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.mcpTitle {
+  color: #ffa500;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 9px;
+}
+
+.mcpToolName {
+  color: #ffcc44;
+  font-size: 9px;
+  padding: 1px 6px;
+  border: 1px solid #806000;
+  background: #100a00;
+}
+
+.mcpStatus {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.mcpCalling {
+  color: #ffff00;
+  animation: ledBlink 0.4s ease-in-out infinite alternate;
+}
+
+.mcpDone {
+  color: #00ff88;
+}
+
+.mcpUri {
+  display: flex;
+  gap: 8px;
+  padding: 4px 8px;
+  align-items: center;
+}
+
+.mcpUriLabel {
+  color: #806000;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.mcpUriValue {
+  color: #ffcc44;
+  font-size: 10px;
+  word-break: break-all;
+}
+
+.mcpResult {
+  border-top: 1px dashed #403000;
+  padding: 6px 8px;
+}
+
+.mcpResultLabel {
+  color: #806000;
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.mcpResultContent {
+  margin: 0;
+  color: #c8a040;
+  font-size: 10px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 4px 6px;
+  background: #050400;
+  border-left: 2px solid #806000;
+}

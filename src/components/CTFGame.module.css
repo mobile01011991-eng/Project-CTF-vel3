@@ -433,3 +433,129 @@
 
 .vcBtn:hover { background: #800000; color: #ffffff; }
 .vcBtn:active { border-style: inset; }
+
+/* ── MCP Intel Brief Box (StoryScreen) ─────────────────── */
+.mcpBriefBox {
+  border: 1px solid #806000;
+  background: #0a0800;
+  overflow: hidden;
+  animation: fadeSlideIn 0.3s ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mcpBriefHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  background: #1a1000;
+  border-bottom: 1px solid #806000;
+}
+
+.mcpBriefIcon { font-size: 13px; }
+
+.mcpBriefTitle {
+  font-size: 9px;
+  font-weight: bold;
+  color: #ffa500;
+  letter-spacing: 2px;
+}
+
+.mcpBriefGrid {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mcpBriefRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.mcpBriefLabel {
+  font-size: 9px;
+  color: #806000;
+  font-weight: bold;
+  letter-spacing: 1px;
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.mcpBriefValue {
+  font-size: 10px;
+  color: #ffcc44;
+}
+
+.mcpBriefCode {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: #ffcc44;
+  background: #100a00;
+  padding: 1px 5px;
+  border: 1px solid #403000;
+}
+
+.mcpBriefExploit {
+  color: #ff6644;
+  border-color: #603020;
+  background: #180800;
+}
+
+.mcpBriefDesc {
+  font-size: 10px;
+  color: #a08040;
+  line-height: 1.6;
+  padding: 6px 10px;
+  border-top: 1px dashed #403000;
+  font-style: italic;
+}
+
+/* ── Terminal MCP Attack Badge ──────────────────────────── */
+.terminalMcpBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: #0a0800;
+  border: 1px solid #604000;
+  font-size: 10px;
+}
+
+.tmBadgeIcon {
+  color: #ffa500;
+  animation: spin 2s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.tmBadgeType {
+  color: #ffa500;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.tmBadgeSep { color: #604000; }
+
+.tmBadgeUri {
+  color: #806030;
+}
+
+.tmBadgeUri code {
+  color: #ff6644;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  background: #180800;
+  padding: 0 4px;
+  border: 1px solid #603020;
+}
+

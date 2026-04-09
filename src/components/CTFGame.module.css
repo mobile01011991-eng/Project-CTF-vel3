@@ -41,7 +41,9 @@
   flex-shrink: 0;
 }
 
-.storyTitle { flex: 1; }
+.storyTitle {
+  flex: 1;
+}
 
 .levelTag {
   font-size: 10px;
@@ -66,8 +68,13 @@
   color: #00ff00;
 }
 
-.storyLore p { margin: 0 0 6px; }
-.storyLore p:last-child { margin-bottom: 0; }
+.storyLore p {
+  margin: 0 0 6px;
+}
+
+.storyLore p:last-child {
+  margin-bottom: 0;
+}
 
 .storyObjective {
   background: #004000;
@@ -88,7 +95,9 @@
   line-height: 1.6;
 }
 
-.objText strong { color: #00ffff; }
+.objText strong {
+  color: #00ffff;
+}
 
 .startBtn {
   background: #000080;
@@ -156,10 +165,25 @@
   letter-spacing: 1px;
 }
 
-.diff_NOVICE     { background: #008000; color: #ffffff; }
-.diff_APPRENTICE { background: #808000; color: #ffffff; }
-.diff_HACKER     { background: #800000; color: #ffffff; }
-.diff_ELITE      { background: #800080; color: #ffff00; }
+.diff_NOVICE {
+  background: #008000;
+  color: #ffffff;
+}
+
+.diff_APPRENTICE {
+  background: #808000;
+  color: #ffffff;
+}
+
+.diff_HACKER {
+  background: #800000;
+  color: #ffffff;
+}
+
+.diff_ELITE {
+  background: #800080;
+  color: #ffff00;
+}
 
 .backBtn {
   background: transparent;
@@ -171,7 +195,10 @@
   cursor: pointer;
 }
 
-.backBtn:hover { color: #ffffff; border-color: #8080c0; }
+.backBtn:hover {
+  color: #ffffff;
+  border-color: #8080c0;
+}
 
 .terminalHint {
   background: #002000;
@@ -184,7 +211,10 @@
   align-items: flex-start;
 }
 
-.hintIcon { font-size: 12px; flex-shrink: 0; }
+.hintIcon {
+  font-size: 12px;
+  flex-shrink: 0;
+}
 
 /* ── Progress Dots ─────────────────────────────────────── */
 .progressRow {
@@ -199,9 +229,17 @@
   font-weight: bold;
 }
 
-.progDone    { color: #00ff00; }
-.progCurrent { color: #ffff00; }
-.progLocked  { color: #404060; }
+.progDone {
+  color: #00ff00;
+}
+
+.progCurrent {
+  color: #ffff00;
+}
+
+.progLocked {
+  color: #404060;
+}
 
 /* ── Manual Answer Input ───────────────────────────────── */
 .manualInputContainer {
@@ -271,8 +309,15 @@
 }
 
 @keyframes pulse {
-  from { opacity: 0.6; transform: scale(1); }
-  to   { opacity: 1;   transform: scale(1.1); }
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 .luTitle {
@@ -320,7 +365,9 @@
   margin-bottom: 3px;
 }
 
-.luNextName { color: #00ccff; }
+.luNextName {
+  color: #00ccff;
+}
 
 .luBtn {
   background: #004000;
@@ -335,8 +382,14 @@
   transition: all 0.1s;
 }
 
-.luBtn:hover { background: #008000; color: #ffffff; }
-.luBtn:active { border-style: inset; }
+.luBtn:hover {
+  background: #008000;
+  color: #ffffff;
+}
+
+.luBtn:active {
+  border-style: inset;
+}
 
 /* ── Victory Screen ────────────────────────────────────── */
 .victoryPage {
@@ -355,9 +408,17 @@
 }
 
 @keyframes glitch {
-  0%   { text-shadow: 2px 0 #ff0000, -2px 0 #00ffff; }
-  50%  { text-shadow: -2px 0 #ff0000, 2px 0 #00ffff; }
-  100% { text-shadow: 2px 0 #ff0000, -2px 0 #00ffff; }
+  0% {
+    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+  }
+
+  50% {
+    text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+  }
+
+  100% {
+    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+  }
 }
 
 .vcTitle {
@@ -369,10 +430,23 @@
 }
 
 @keyframes flicker {
-  0%, 100% { opacity: 1; }
-  92%       { opacity: 1; }
-  93%       { opacity: 0.3; }
-  94%       { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 1;
+  }
+
+  93% {
+    opacity: 0.3;
+  }
+
+  94% {
+    opacity: 1;
+  }
 }
 
 .vcSub {
@@ -392,8 +466,14 @@
   padding: 12px 14px;
 }
 
-.vcStory p { margin: 0 0 8px; }
-.vcTagline { color: #00cccc; font-style: italic; }
+.vcStory p {
+  margin: 0 0 8px;
+}
+
+.vcTagline {
+  color: #00cccc;
+  font-style: italic;
+}
 
 .vcBadges {
   display: flex;
@@ -431,8 +511,14 @@
   transition: all 0.1s;
 }
 
-.vcBtn:hover { background: #800000; color: #ffffff; }
-.vcBtn:active { border-style: inset; }
+.vcBtn:hover {
+  background: #800000;
+  color: #ffffff;
+}
+
+.vcBtn:active {
+  border-style: inset;
+}
 
 /* ── MCP Intel Brief Box (StoryScreen) ─────────────────── */
 .mcpBriefBox {
@@ -443,8 +529,15 @@
 }
 
 @keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mcpBriefHeader {
@@ -456,7 +549,9 @@
   border-bottom: 1px solid #806000;
 }
 
-.mcpBriefIcon { font-size: 13px; }
+.mcpBriefIcon {
+  font-size: 13px;
+}
 
 .mcpBriefTitle {
   font-size: 9px;
@@ -534,8 +629,13 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .tmBadgeType {
@@ -544,7 +644,9 @@
   letter-spacing: 1px;
 }
 
-.tmBadgeSep { color: #604000; }
+.tmBadgeSep {
+  color: #604000;
+}
 
 .tmBadgeUri {
   color: #806030;
@@ -558,4 +660,3 @@
   padding: 0 4px;
   border: 1px solid #603020;
 }
-

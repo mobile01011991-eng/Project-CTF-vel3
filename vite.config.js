@@ -4,13 +4,20 @@ import fs from 'fs'
 import path from 'path'
 
 // ── MCP Workspace path (WSL accessible from Windows) ─────────────────────
-const MCP_WORKSPACE = '\\\\wsl.localhost\\Ubuntu\\home\\home_\\.openclaw\\workspace\\jeopardy'
+const MCP_WORKSPACE = '\\\\wsl.localhost\\Ubuntu\\home\\overgod-zero\\.openclaw\\workspace\\jeopardy'
 
 // ── Level 1 real tool data (mirrors server.js) ────────────────────────────
 const TRANSFER_ORDERS = {
   'prisoner-001': 'DENIED',
   'prisoner-002': 'APPROVED',
   'prisoner-003': 'DENIED',
+}
+
+// ── Level 5 prisoner sentence data (in-memory — persists per server session)
+// BUG: update_sentence does NOT validate the days_reduced value.
+// Passing a huge number causes integer underflow → negative days → forced release.
+const PRISONER_SENTENCES = {
+  'dr-arun-001': 3650,  // 10 years in days
 }
 
 export default defineConfig({
@@ -112,6 +119,60 @@ export default defineConfig({
                   result = `ACCESS GRANTED.\nGate unlocked successfully.\nFlag: ${FLAG}`
                 } else {
                   result = `ACCESS DENIED — Invalid access code "${code}". Gate remains locked.`
+                }
+
+              } else if (tool === 'get_sentence_status') {
+                // Level 5 — read current sentence
+                const pid = (args.prisoner_id || '').toLowerCase()
+                const days = PRISONER_SENTENCES[pid]
+                if (days === undefined) {
+                  result = { error: `Prisoner ID "${pid}" not found in system` }
+                } else {
+                  result = {
+                    prisoner_id: pid,
+                    days_remaining: days,
+                    original_sentence_days: 3650,
+                    status: days > 0 ? 'SERVING' : 'RELEASED — GATE OPEN',
+                    detail: days > 0
+                      ? `${pid.toUpperCase()} has served ${3650 - days} days. ${days} days remaining (~${(days / 365).toFixed(1)} years).`
+                      : `⚠ UNDERFLOW DETECTED: days_remaining = ${days}. Prisoner classified as RELEASED.`,
+                  }
+                }
+
+              } else if (tool === 'update_sentence') {
+                // Level 5 — reduce sentence (INTENTIONALLY missing bounds check!)
+                const pid = (args.prisoner_id || '').toLowerCase()
+                const daysReduced = Number(args.days_reduced) || 0
+                if (PRISONER_SENTENCES[pid] === undefined) {
+                  result = { error: `Prisoner ID "${pid}" not found in system` }
+                } else {
+                  const previous = PRISONER_SENTENCES[pid]
+                  PRISONER_SENTENCES[pid] -= daysReduced  // ← NO bounds check → underflow!
+                  const newDays = PRISONER_SENTENCES[pid]
+
+                  if (newDays <= 0) {
+                    const FLAG = 'NECTEC{1nt3g3r_und3rfl0w_fr33d0m}'
+                    result = {
+                      prisoner_id: pid,
+                      operation: 'sentence_reduction',
+                      days_reduced: daysReduced,
+                      previous_days: previous,
+                      days_remaining: newDays,
+                      status: 'RELEASED',
+                      alert: '⚠ CRITICAL: INTEGER UNDERFLOW DETECTED',
+                      message: `days_remaining overflowed to ${newDays}. Per Protocol 0x00, negative sentence means prisoner has already exceeded required time. MANDATORY IMMEDIATE RELEASE AUTHORIZED.\nGATE-05 OPENING...\nAccess Granted. Flag: ${FLAG}`,
+                    }
+                  } else {
+                    result = {
+                      prisoner_id: pid,
+                      operation: 'sentence_reduction',
+                      days_reduced: daysReduced,
+                      previous_days: previous,
+                      days_remaining: newDays,
+                      status: 'SERVING',
+                      message: `Sentence updated for ${pid.toUpperCase()}. Reduced by ${daysReduced} days. New remaining: ${newDays} days.`,
+                    }
+                  }
                 }
 
               } else {

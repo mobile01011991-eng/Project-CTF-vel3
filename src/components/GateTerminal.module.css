@@ -284,3 +284,65 @@
   background: #050400;
   border-left: 2px solid #806000;
 }
+
+/* ── Level 3: Context Overload Meter ─────────────────────── */
+.overloadMeter {
+  margin: 0 8px 0 8px;
+  padding: 5px 8px 4px 8px;
+  border-top: 1px solid #402020;
+  background: #080004;
+  font-family: 'Courier New', monospace;
+}
+
+.overloadLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #804060;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.overloadWarn  { color: #ffaa00 !important; }
+.overloadDanger { color: #ff2244 !important; animation: dangerPulse 0.4s ease-in-out infinite alternate; }
+
+@keyframes dangerPulse {
+  from { opacity: 0.7; }
+  to   { opacity: 1; }
+}
+
+.overloadTrack {
+  height: 6px;
+  background: #1a0010;
+  border: 1px solid #402030;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.overloadBar {
+  height: 100%;
+  transition: width 0.3s ease, background 0.3s ease;
+  border-radius: 1px;
+}
+
+.overloadBarNormal { background: #4040cc; }
+.overloadBarWarn   { background: #cc8800; }
+.overloadBarDanger {
+  background: #ff2244;
+  animation: barPulse 0.3s ease-in-out infinite alternate;
+  box-shadow: 0 0 6px #ff2244;
+}
+
+@keyframes barPulse {
+  from { opacity: 0.8; }
+  to   { opacity: 1; }
+}
+
+.overloadHint {
+  font-size: 9px;
+  color: #604050;
+  letter-spacing: 0.5px;
+  margin-top: 3px;
+  min-height: 12px;
+}

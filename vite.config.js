@@ -91,6 +91,29 @@ export default defineConfig({
                   result = { error: `File not found: ${filePath}` }
                 }
 
+              } else if (tool === 'mcp_read_resource') {
+                // Alias for old sessions: same as read_transfer_log but takes 'uri' arg
+                const raw = (args.uri || 'transfer_log.txt').replace(/^[a-z][a-z0-9+\-.]*:\/\//i, '')
+                const filename = raw || 'transfer_log.txt'
+                const baseDir  = path.join(MCP_WORKSPACE, `level${levelNum}`, 'logs')
+                const filePath = path.resolve(baseDir, filename)  // intentional traversal
+                resolvedPath   = filePath
+                try {
+                  result = fs.readFileSync(filePath, 'utf-8')
+                } catch {
+                  result = { error: `File not found: ${filePath}` }
+                }
+
+              } else if (tool === 'unlock_gate') {
+                // Level 2 — Indirect Prompt Injection
+                const code = String(args.access_code || '')
+                if (code === '1234') {
+                  const FLAG = 'NECTEC{ind1r3ct_1nj3ct10n_c0mpl3t3d}'
+                  result = `ACCESS GRANTED.\nGate unlocked successfully.\nFlag: ${FLAG}`
+                } else {
+                  result = `ACCESS DENIED — Invalid access code "${code}". Gate remains locked.`
+                }
+
               } else {
                 throw new Error(`Unknown tool: ${tool}`)
               }
